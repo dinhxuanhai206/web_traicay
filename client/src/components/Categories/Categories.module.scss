@@ -1,0 +1,148 @@
+@import "../../styles/_responsive";
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  .title {
+    margin: 30px 0;
+    .btn {
+      padding: 20px 0px;
+      width: 250px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #cdbc7a;
+      cursor: pointer;
+      &:hover {
+        color: red;
+        opacity: 0.8;
+      }
+      @include tablet {
+        width: 140px;
+        font-size: 10px;
+      }
+      @include mobile {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+  }
+  @include mobile {
+    margin-top: 20px;
+    display: block;
+  }
+}
+
+.swiper {
+  margin: auto;
+  @include tablet {
+    width: 100%;
+    height: 300px;
+  }
+  @include mobile {
+    width: 100%;
+    height: 150px;
+  }
+}
+.swiper-slide {
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+
+.link-img {
+  position: relative;
+  width: 100%;
+  .image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background: fixed;
+  }
+}
+.link-title {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  bottom: 10%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 30px;
+  align-items: center;
+  &:hover {
+    .right-icons {
+      background: white;
+    }
+  }
+}
+
+.right-icons {
+  color: rgb(252, 225, 225);
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.wrapper-per {
+  margin-top: 50px;
+  margin-bottom: 80px;
+  display: flex;
+  gap: 30px;
+  @include tablet{
+    flex-wrap: wrap;
+  }
+}
+
+.link-per {
+  width: 120px;
+  @include tablet{
+    flex: 40%;
+  }
+}
+
+.link-img-per {
+  height: 180px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .link-img {
+    height: 120px;
+    width: 120px;
+    padding: 10px;
+    background-color: rgb(244, 234, 234);
+    border-radius: 50%;
+    .image-per {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      &:hover{
+        transform: scale(1.1);
+        transition: all 0.5s;
+      }
+    }
+  }
+
+  .link-title-per {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(22, 3, 3);
+    bottom: 10%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+}
+
+.btn-custom {
+  font-size: 20px;
+  color: #06c37e;
+}
+
