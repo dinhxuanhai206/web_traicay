@@ -18,6 +18,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import dataMockProduce from "../../constant/mockDataProduce"
+import Checkbox from "../../components/CheckBox/CheckBox";
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +30,24 @@ const Cart = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const [isCheck, setIsCheck] = useState([]);
+
+  const handleSelectAll = e => {
+    setIsCheckAll(!isCheckAll);
+    setIsCheck(dataMockProduce.map(li => li.id));
+    if (isCheckAll) {
+      setIsCheck([]);
+    }
+  };
+
+  const handleClick = (e, id) => {
+    const { checked } = e.target;
+    setIsCheck([...isCheck, id]);
+    if (!checked) {
+      setIsCheck(isCheck.filter(item => item !== id));
+    }
+  };
 
   useEffect(() => {
     dispatch(getTotals());
@@ -156,8 +175,12 @@ const Cart = () => {
               )}
             </div>
             <div className={cx("title-block")}>
-              <div className={cx("check-box")}>
-                <input type="checkbox" />
+              <div className={cx("check_wrapper")}>
+                <Checkbox
+                  type="checkbox"
+                  id="selectAll"
+                  handleClick={handleSelectAll}
+                  isChecked={isCheckAll} />
               </div>
               <div className={cx("product")}>
                 {" "}
@@ -196,73 +219,80 @@ const Cart = () => {
             </div>
             <div className={cx("cart-block")}>
               {dataMockProduce.map((item, index) => (
-                <div className={cx("item")} key={index}>
-                  <div className={cx("check-box")}>
-                    <input type="checkbox" />
-                  </div>
-                  <div className={cx("item-block")}>
-                    <div className={cx("image")}>
-                      <img src={item.image} alt="" className={cx("img")} />
+                <div className={cx("wrapper-item")}>
+                  <div className={cx("item")} key={index}>
+                    <div className={cx("check_wrapper")}>
+                      <Checkbox
+                        type="checkbox"
+                        id={item.id}
+                        handleClick={(e) => handleClick(e, item.id)}
+                        isChecked={isCheck.includes(item.id)} />
                     </div>
-                    <div className={cx("name-right")}>
-                      <div className={cx("name")}>{item.title}</div>
+                    <div className={cx("item-block")}>
+                      <div className={cx("image")}>
+                        <img src={item.image} alt="" className={cx("img")} />
+                      </div>
+                      <div className={cx("name-right")}>
+                        <div className={cx("name")}>{item.title}</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className={cx("price")}>
-                    {" "}
-                    {i18n.language === "vn" ? (
-                      <span>
-                        {(item.price * 23000).toLocaleString("it-IT", {
-                          style: "currency",
-                          currency: "VND",
-                        })}
-                      </span>
-                    ) : (
-                      <span>${item.price}</span>
-                    )}
-                  </div>
-                  <div className={cx("quantity")}>
-                    <button
-                      className={cx("btn")}
-                      onClick={() => handleDecrease(item)}
-                    >
-                      -
-                    </button>
-                    <div className={cx("count")}>{item.cartQuantity}</div>
-                    <button
-                      className={cx("btn")}
-                      onClick={() => handleIncrease(item)}
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className={cx("total")}>
-                    {i18n.language === "vn" ? (
-                      <span>
-                        {(item.price * 23000 * item.cartQuantity).toLocaleString(
-                          "it-IT",
-                          {
+                    <div className={cx("price")}>
+                      {" "}
+                      {i18n.language === "vn" ? (
+                        <span>
+                          {(item.price * 23000).toLocaleString("it-IT", {
                             style: "currency",
                             currency: "VND",
-                          }
-                        )}
-                      </span>
-                    ) : (
-                      <span>${item.price * item.cartQuantity}</span>
-                    )}
-                  </div>
-                  <div className={cx("remove")}>
-                    <button
-                      onClick={() => handleRemove(item)}
-                      className={cx("btn-remove")}
-                    >
-                      {i18n.language === "vn" ? (
-                        <span>Thu hồi</span>
+                          })}
+                        </span>
                       ) : (
-                        <span>Remove</span>
+                        <span>${item.price}</span>
                       )}
-                    </button>
+                    </div>
+                    <div className={cx("quantity")}>
+                      <button
+                        className={cx("btn")}
+                        onClick={() => handleDecrease(item)}
+                      >
+                        -
+                      </button>
+                      <div className={cx("count")}>{1}</div>
+                      <button
+                        className={cx("btn")}
+                        onClick={() => handleIncrease(item)}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div className={cx("total")}>
+                      {i18n.language === "vn" ? (
+                        <span>
+                          {(item.price * 23000 * 1).toLocaleString(
+                            "it-IT",
+                            {
+                              style: "currency",
+                              currency: "VND",
+                            }
+                          )}
+                        </span>
+                      ) : (
+                        <span>${item.price * 1}</span>
+                      )}
+                    </div>
+                    <div className={cx("remove")}>
+                      <button
+                        onClick={() => handleRemove(item)}
+                        className={cx("btn-remove")}
+                      >
+                        {i18n.language === "vn" ? (
+                          <span>Xóa</span>
+                        ) : (
+                          <span>Remove</span>
+                        )}
+                      </button>
+                    </div>
                   </div>
+                  <div className={cx("title-bottom")}><span>Cửa hàng còn khuyến mãi: </span>vui lòng chọn sản phẩm</div>
                 </div>
               ))}
             </div>

@@ -2,7 +2,7 @@
 
 .wrapper-cart {
   width: 100%;
-  background-color: #eceaea;
+  background-color: #eff8f2;
   padding: 40px 0;
 }
 
@@ -12,6 +12,7 @@
   font-size: 3rem;
   letter-spacing: 2px;
   font-weight: bold;
+  color: rgb(245, 111, 111);
 }
 
 .bb-10 {
@@ -29,16 +30,17 @@
   width: 100%;
   font-weight: bold;
   padding-bottom: 10px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #06c37e;
   gap: 10px;
   padding: 10px 20px;
+  color: #06c37e;
 
-  .check-box {
-    width: 5%;
+  .check_wrapper {
+    width: 3%;
   }
 
   .product {
-    width: 20%;
+    width: 30%;
   }
 
   .product-price {
@@ -54,7 +56,7 @@
   }
 
   .remove {
-    width: 15%;
+    width: 7%;
   }
 
   @include mobile {
@@ -78,24 +80,39 @@
   }
 }
 
+
 .cart-block {
   max-width: 1200px;
   margin: 20px auto;
 
-  .item {
-    display: flex;
-    align-items: center;
+  .wrapper-item {
     width: 100%;
-    padding: 20px 20px;
     background-color: white;
-    border-radius: 5px;
-    gap: 10px;
     margin: 20px 0;
-    
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
-    @include mobile {
-      margin-top: 10px;
-      padding-bottom: 20px;
+    .item {
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #06c37e;
+
+      @include mobile {
+        margin-top: 10px;
+        padding-bottom: 20px;
+      }
+    }
+
+    .title-bottom {
+      padding: 10px 20px;
+      color: #b1afaf;
+
+      span {
+        font-weight: 600;
+        color: #272727;
+      }
     }
   }
 }
@@ -103,7 +120,7 @@
 ///////////////////////////////
 
 .item-block {
-  width: 20%;
+  width: 30%;
   height: 150px;
   display: flex;
   align-items: center;
@@ -166,8 +183,8 @@
     border-radius: 50%;
     cursor: pointer;
     line-height: 15px;
-    color: #cdbc7a;
-    background: #000000;
+    background-color: #06c37e;
+    color: white;
   }
 
   @include mobile {
@@ -185,12 +202,10 @@
   }
 }
 
-.check-box {
-  width: 5%;
-}
-
 .remove {
-  width: 15%;
+  width: 7%;
+
+  transition: ease 0.5s;
 
   .btn-remove {
     margin-top: 5px;
@@ -203,7 +218,6 @@
     &:hover {
       color: #fbfbf9;
       background: rgb(30, 30, 239);
-      transition: ease 0.5s;
     }
   }
 }
@@ -214,7 +228,7 @@
   margin: 0 auto;
 
   .clear {
-    width: 85%;
+    width: 80%;
   }
 
   .btn-clear {

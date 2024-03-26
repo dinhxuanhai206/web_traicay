@@ -1,0 +1,43 @@
+.check-box {
+    width: 3%;
+  
+    input {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      display: none;
+      cursor: pointer;
+    }
+  
+    label {
+      position: relative;
+      cursor: pointer;
+    }
+  
+    label::before {
+      content: '';
+      background-color: #06c37e;
+      border: 1px solid #06c37e;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+      padding: 7px;
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  
+    input:checked+label::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 6px;
+      height: 14px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+  
