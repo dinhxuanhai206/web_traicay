@@ -134,9 +134,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={cx("copy")}>
-        © Copyright 2021-2022 Hshop. Design Group14
-      </div>
     </footer>
   );
 };

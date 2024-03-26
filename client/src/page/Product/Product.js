@@ -18,8 +18,10 @@ const Product = () => {
   const location = useLocation();
   const [product, setProduct] = useState([]);
   const [active, setActive] = useState(0);
-  const id = location.pathname.split("/")[2];
   const [cartQuantity, setQuantity] = useState(1);
+  const [isActive, setIsActive] = useState(0)
+
+  const id = location.pathname.split("/")[2];
 
   const dispatch = useDispatch();
 
@@ -27,6 +29,11 @@ const Product = () => {
     dispatch(add({ ...product, cartQuantity }));
     toast("add to cart");
   };
+
+  const handelActive = (id) => {
+    setIsActive(id)
+  }
+
   useEffect(() => {
     document.documentElement.scrollTop = 0;
   }, []);
@@ -38,6 +45,7 @@ const Product = () => {
       setQuantity(cartQuantity + 1);
     }
   };
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -49,6 +57,25 @@ const Product = () => {
     };
     fetchProduct();
   }, [id]);
+
+  const arrBtn = [
+    {
+      id: 0,
+      kilo: "100g"
+    },
+    {
+      id: 1,
+      kilo: "1kg"
+    },
+    {
+      id: 2,
+      kilo: "2kg"
+    },
+    {
+      id: 3,
+      kilo: "5kg"
+    },
+  ]
 
   return (
     <div className={cx("container")}>
@@ -81,21 +108,37 @@ const Product = () => {
             <span className={cx("title")}>
               {" "}
               {i18n.language === "vn" ? (
-                <span>SÓ LƯỢNG:</span>
+                <span>SỐ LƯỢNG:</span>
               ) : (
                 <span>QUANTITY:</span>
               )}
             </span>
             <div className={cx("count")}>{cartQuantity}</div>
           </div>
-          <div>
-            <button className={cx("btn-add")} onClick={addCard}>
+          <div className={cx("quantity")}>
+            <span className={cx("title")}>
+              {" "}
               {i18n.language === "vn" ? (
-                <span>Thêm vào cart</span>
+                <span>Trái chanh không hạt với hương vị ngon nhất từ trước tới nay</span>
               ) : (
-                <span>add to cart</span>
+                <span>Lemon without seeds that tastes better than ever</span>
               )}
-            </button>
+            </span>
+          </div>
+          <div className={cx("quantity")}>
+            <span className={cx("title")}>
+              {" "}
+              {i18n.language === "vn" ? (
+                <span>Trọng Lượng</span>
+              ) : (
+                <span>Trọng Lượng</span>
+              )}
+              <div className={cx("arr_btn")}>
+                {arrBtn.map((item) => (
+                  <button key={item.id} className={isActive === item.id ? cx("btn_weight", "active") : cx("btn_weight")} onClick={() => handelActive(item.id)}>{item.kilo}</button>
+                ))}
+              </div>
+            </span>
           </div>
           <div className={cx("des")}>
             <p className={cx("p")}>
@@ -106,26 +149,21 @@ const Product = () => {
                 <span>FreeShip</span>
               )}
             </p>
-            <p className={cx("p")}>
+          </div>
+          <div>
+            <button className={cx("btn-add")} onClick={addCard}>
               {i18n.language === "vn" ? (
-                <span>
-                  Các loại thuế và phí hải quan sẽ được áp dụng khi giao hàng
-                  theo quy định của Hải quan Việt Nam
-                </span>
+                <span>Thêm vào cart</span>
               ) : (
-                <span>
-                  {" "}
-                  Customs taxes and fees will be applied upon delivery in
-                  accordance with Vietnam Customs regulations
-                </span>
+                <span>add to cart</span>
               )}
-            </p>
+            </button>
           </div>
         </div>
       </div>
-      <div className={cx("productTab")}>
+      {/* <div className={cx("productTab")}>
         <Comment />
-      </div>
+      </div> */}
       <ToastContainer />
     </div>
   );
