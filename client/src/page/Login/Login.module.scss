@@ -1,67 +1,44 @@
 @import "../../styles/_responsive";
 .wrapper {
+  background-color: rgba(146, 233, 168, 0.5);
+}
+
+.login-page {
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 100px);
   align-items: center;
-  min-height: 100vh;
-  background-color: rgb(44, 43, 43);
+  
 }
+
+.img-login {
+  width: 600px;
+  height: 500px;
+  border-radius: 8px 0 0 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px 0 0 8px;
+  }
+}
+
 .box {
-  position: relative;
   width: 380px;
-  height: 420px;
-  background: black;
-  border-radius: 8px;
+  height: 500px;
+  background: white;
+  border-radius: 0 8px 8px 0;
   overflow: hidden;
+  opacity: 1;
   @include mobile {
     width: 300px;
-    height: 420px;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 380px;
-    height: 420px;
-    background: linear-gradient(0deg, transparent, #cdbc7a, #cdbc7a);
-    transform-origin: bottom right;
-    animation: animate 6s linear infinite;
-    @include mobile {
-      width: 300px;
-      height: 420px;
-    }
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 380px;
-    height: 420px;
-    background: linear-gradient(0deg, transparent, #cdbc7a, #cdbc7a);
-    transform-origin: bottom right;
-    animation: animate 6s linear infinite;
-    animation-delay: -3s;
-    @include mobile {
-      width: 300px;
-      height: 420px;
-    }
+    height: 500px;
   }
 }
-@keyframes animate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+
 .form {
   position: absolute;
-  inset: 2px;
   border-radius: 8px;
-  background: black;
   z-index: 10;
   padding: 50px 40px;
   display: flex;
@@ -70,8 +47,8 @@
     padding: 50px 10px;
   }
   & h2 {
-    color: #cdbc7a;
-    font-weight: 600;
+    color: rgb(245, 119, 119);
+    font-weight: bolder;
     text-align: center;
     letter-spacing: 2px;
   }
@@ -83,13 +60,13 @@
       width: 270px;
     }
     & input {
+      border-bottom: 1px solid rgb(245, 119, 119);
       position: relative;
       width: 100%;
       padding: 20px 10px 10px;
       background: transparent;
-      border: none;
       outline: none;
-      color: black;
+      color: white;
       // color: #cdbc7a;
       font-size: 1.6rem;
       letter-spacing: 1px;
@@ -100,8 +77,8 @@
       position: absolute;
       left: 0;
       padding: 20px 10px 10px;
-      font-size: 1.6rem;
-      color: #8f8f8f;
+      font-size: 1.4rem;
+      color: #06c37e;
       pointer-events: none;
       letter-spacing: 1px;
       transition: 0.5s;
@@ -109,7 +86,7 @@
   }
   .inputBox input:valid ~ span,
   .inputBox input:focus ~ span {
-    color: #cdbc7a;
+    color: rgb(245, 119, 119);
     transform: translateX(0px) translateY(-40px);
     font-size: 1.4rem;
   }
@@ -119,7 +96,7 @@
     bottom: 0;
     width: 100%;
     height: 2px;
-    background: #cdbc7a;
+    background: #06c37e;
     border-radius: 4px;
     transition: 0.5s;
     pointer-events: none;
@@ -134,20 +111,21 @@
     justify-content: space-between;
     .link {
       margin: 10px 0;
-      font-style: 1.4rem;
-      color: #8f8f8f;
+      font-style: 1.2rem;
+      color: #06c37e;
       &:hover {
-        color: #cdbc7a;
+        color: rgb(245, 119, 119);
       }
       &:nth-child(2) {
-        color: #cdbc7a;
+        color: rgb(245, 119, 119);
       }
     }
   }
   .btn-submit {
     border: none;
     outline: none;
-    background: #cdbc7a;
+    background: #06c37e;
+    color: white;
     padding: 11px 25px;
     width: 100px;
     margin-top: 10px;

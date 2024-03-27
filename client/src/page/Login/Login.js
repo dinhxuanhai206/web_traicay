@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../redux/userActions";
 import { toast, ToastContainer } from "react-toastify";
+import banner from "../../assets/images/ba.jpg"
 import Tippy from "@tippyjs/react";
 import "react-toastify/dist/ReactToastify.css";
 const cx = classNames.bind(styles);
@@ -45,38 +46,43 @@ const Login = () => {
 
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("box")}>
-        <form className={cx("form")} onSubmit={handleSubmit(submitForm)}>
-          <h2>Sign in</h2>
-          <div className={cx("inputBox")}>
-            <input type="email" required="required" {...register("email")} />
-            <span>Email</span>
-            <i></i>
-          </div>
-          <p className={cx("valid-error-message")}>{errors.email?.message}</p>
-          <div className={cx("inputBox")}>
-            <input
-              type="password"
-              {...register("password")}
-              required="required"
-            />
-            <span>Password</span>
-            <i></i>
-          </div>
-          <p className={cx("valid-error-message")}>
-            {errors.password?.message}
-          </p>
-          <div className={cx("links")}>
-            <Link to="" className={cx("link")}>
-              Forgot Password
-            </Link>
-            <Link to="/register" className={cx("link")}>
-              Signup
-            </Link>
-          </div>
-          <input type="submit" value="Login" className={cx("btn-submit")} />
-          <ToastContainer />
-        </form>
+      <div className={cx("login-page")}>
+        <div className={cx("img-login")}>
+          <img src={banner} alt="" />
+        </div>
+        <div className={cx("box")}>
+          <form className={cx("form")} onSubmit={handleSubmit(submitForm)}>
+            <h2>Sign in</h2>
+            <div className={cx("inputBox")}>
+              <input type="email" required="required" {...register("email")} />
+              <span>Email</span>
+              <i></i>
+            </div>
+            <p className={cx("valid-error-message")}>{errors.email?.message}</p>
+            <div className={cx("inputBox")}>
+              <input
+                type="password"
+                {...register("password")}
+                required="required"
+              />
+              <span>Password</span>
+              <i></i>
+            </div>
+            <p className={cx("valid-error-message")}>
+              {errors.password?.message}
+            </p>
+            <div className={cx("links")}>
+              <Link to="" className={cx("link")}>
+                Forgot Password
+              </Link>
+              <Link to="/register" className={cx("link")}>
+                Signup
+              </Link>
+            </div>
+            <input type="submit" value="Login" className={cx("btn-submit")} />
+            <ToastContainer />
+          </form>
+        </div>
       </div>
     </div>
   );
